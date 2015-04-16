@@ -33,4 +33,18 @@ public class LruCacheTest {
 		
 		assertEquals("{key=value}", cache.toString());
 	}
+	
+	@Test
+	public void testToStringPrintsInReverseOrderOfInsertion() {
+		LruCache cache = new LruCacheImpl(5);
+
+		cache.put("five", 5);
+		cache.put("four", 4);
+		cache.put("three", 3);
+		cache.put("two", 2);
+		cache.put("one", 1);
+		
+		assertEquals("{one=1, two=2, three=3, four=4, five=5}", cache.toString());
+	}
+
 }
