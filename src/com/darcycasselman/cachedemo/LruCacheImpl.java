@@ -1,17 +1,20 @@
 package com.darcycasselman.cachedemo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LruCacheImpl implements LruCache {
 
+	private Map<Object, Object> cache = new HashMap<>();
+	
 	@Override
 	public Object get(Object key) {
-		// TODO Auto-generated method stub
-		return null;
+		return cache.get(key);
 	}
 
 	@Override
 	public void put(Object key, Object value) {
-		// TODO Auto-generated method stub
-
+		cache.put(key, value);
 	}
 
 	@Override
