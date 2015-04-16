@@ -25,4 +25,12 @@ public class LruCacheTest {
 		
 		assertEquals(maxSize, cache.getMaxSize());
 	}
+	
+	@Test
+	public void testToString() {
+		LruCache cache = new LruCacheImpl();
+		cache.put("key", "value");
+		
+		assertEquals("{key=value}", cache.toString());
+	}
 }
