@@ -46,5 +46,24 @@ public class LruCacheTest {
 		
 		assertEquals("{one=1, two=2, three=3, four=4, five=5}", cache.toString());
 	}
+	
+	@Test
+	public void testToStringPrintsInReverseOrderOfAccess() {
+		LruCache cache = new LruCacheImpl(5);
+
+		cache.put("one", 1);
+		cache.put("two", 2);
+		cache.put("three", 3);
+		cache.put("four", 4);
+		cache.put("five", 5);
+		
+		cache.get("five");
+		cache.get("four");
+		cache.get("three");
+		cache.get("two");
+		cache.get("one");
+
+		assertEquals("{one=1, two=2, three=3, four=4, five=5}", cache.toString());
+	}
 
 }
