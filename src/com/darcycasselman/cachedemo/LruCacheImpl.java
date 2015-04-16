@@ -34,4 +34,11 @@ public class LruCacheImpl implements LruCache {
 		return maxSize;
 	}
 
+	@Override
+	public String toString() {
+		return cache.toString();
+	}
+	
+	
+
 }
