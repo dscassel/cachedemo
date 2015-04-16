@@ -10,7 +10,7 @@ public class LruCacheImpl implements LruCache {
 	private static int DEFAULT_CACHE_SIZE = 10;
 	
 	private Map<Object, Object> cache = new HashMap<>();
-	private LinkedList<Object> recentOrderList = new LinkedList<>();
+	private LinkedList<Object> index = new LinkedList<>();
 	
 	private int maxSize;
 	
@@ -24,23 +24,24 @@ public class LruCacheImpl implements LruCache {
 
 	@Override
 	public Object get(Object key) {
-		if ( !recentOrderList.remove(key) ) {
+		if ( !index.remove(key) ) {
 			return null;
 		}
-		recentOrderList.push(key);
+		index.push(key);
 		
 		return cache.get(key);
 	}
 
 	@Override
 	public void put(Object key, Object value) {
-		if ( recentOrderList.size() >= maxSize ) {
-			Object oldestKey = recentOrderList.removeLast();
+		if ( index.size() >= maxSize ) {
+			Object oldestKey = index.removeLast();
 			cache.remove(oldestKey);
 		}
 		
-		recentOrderList.push(key);
-		cache.put(key, value);
+		if ( null == cache.put(key, value) ) {
+			index.push(key);
+		}
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class LruCacheImpl implements LruCache {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		
-		ListIterator<Object> iterator = recentOrderList.listIterator();
+		ListIterator<Object> iterator = index.listIterator();
 		while ( iterator.hasNext() ) {
 			Object key = iterator.next();
 			sb.append(key);
