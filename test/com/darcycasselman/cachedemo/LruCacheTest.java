@@ -79,5 +79,17 @@ public class LruCacheTest {
 		
 		assertNull("get of a missing key is not null", cache.get("test"));
 	}
+	
+	@Test
+	public void testCacheFullRemovesOldest() {
+		LruCache cache = new LruCacheImpl(2);
+		
+		cache.put("three", 3);
+		cache.put("two", 2);
+		cache.put("one", 1);
+		
+		assertEquals("{one=1, two=2}", cache.toString());
+	}
+	
 
 }
