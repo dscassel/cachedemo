@@ -14,10 +14,17 @@ public class LruCacheImpl implements LruCache {
 	
 	private int maxSize;
 	
+	/**
+	 * Constructs a new cache, specifying a maximum size.
+	 * @param maxSize The maximum size of the cache.
+	 */
 	public LruCacheImpl(int maxSize) {
 		this.maxSize = maxSize;
 	}
 
+	/**
+	 * Constructs a new cache, with a default maximum size.
+	 */
 	public LruCacheImpl() {
 		this(DEFAULT_CACHE_SIZE);
 	}
