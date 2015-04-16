@@ -65,5 +65,19 @@ public class LruCacheTest {
 
 		assertEquals("{one=1, two=2, three=3, four=4, five=5}", cache.toString());
 	}
+	
+	@Test
+	public void testEmptyToString() {
+		LruCache cache = new LruCacheImpl();
+		
+		assertEquals("{}", cache.toString());
+	}
+	
+	@Test
+	public void testGetKeyNotFoundReturnsNull() {
+		LruCache cache = new LruCacheImpl();
+		
+		assertNull("get of a missing key is not null", cache.get("test"));
+	}
 
 }
