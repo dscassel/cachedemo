@@ -34,6 +34,11 @@ public class LruCacheImpl implements LruCache {
 
 	@Override
 	public void put(Object key, Object value) {
+		if ( recentOrderList.size() >= maxSize ) {
+			Object oldestKey = recentOrderList.removeLast();
+			cache.remove(oldestKey);
+		}
+		
 		recentOrderList.push(key);
 		cache.put(key, value);
 	}
