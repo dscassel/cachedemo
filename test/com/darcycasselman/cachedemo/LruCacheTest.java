@@ -101,5 +101,17 @@ public class LruCacheTest {
 		assertEquals("{dup=newValue}", cache.toString());
 	}
 	
+	@Test
+	public void testUpdateCacheOrderOnValueUpdate() {
+		LruCache cache = new LruCacheImpl();
+		
+		cache.put("three", 3);
+		cache.put("two", 2);
+		cache.put("one", 1);
+		cache.put("three", "update");
+		
+		assertEquals("{three=update, one=1, two=2}", cache.toString());
+	}
+	
 
 }
