@@ -41,6 +41,9 @@ public class LruCacheImpl implements LruCache {
 		
 		if ( null == cache.put(key, value) ) {
 			index.push(key);
+		} else {
+			index.remove(key);
+			index.push(key);
 		}
 	}
 
