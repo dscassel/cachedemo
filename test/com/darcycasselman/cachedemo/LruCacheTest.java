@@ -91,5 +91,15 @@ public class LruCacheTest {
 		assertEquals("{one=1, two=2}", cache.toString());
 	}
 	
+	@Test
+	public void testNoDuplicatesInCache() {
+		LruCache cache = new LruCacheImpl();
+		
+		cache.put("dup", "oldValue");
+		cache.put("dup", "newValue");
+		
+		assertEquals("{dup=newValue}", cache.toString());
+	}
+	
 
 }
