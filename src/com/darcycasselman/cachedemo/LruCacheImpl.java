@@ -7,6 +7,14 @@ public class LruCacheImpl implements LruCache {
 
 	private Map<Object, Object> cache = new HashMap<>();
 	
+	public LruCacheImpl(int i) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public LruCacheImpl() {
+		this(1);
+	}
+
 	@Override
 	public Object get(Object key) {
 		return cache.get(key);

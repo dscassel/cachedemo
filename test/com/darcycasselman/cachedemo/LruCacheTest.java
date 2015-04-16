@@ -16,5 +16,13 @@ public class LruCacheTest {
 		
 		assertEquals(value, cache.get(key));
 	}
-
+	
+	@Test
+	public void testGetMaxSize() {
+		int maxSize = 3;
+		
+		LruCache cache = new LruCacheImpl(3);
+		
+		assertEquals(maxSize, cache.getMaxSize());
+	}
 }
