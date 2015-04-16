@@ -5,14 +5,18 @@ import java.util.Map;
 
 public class LruCacheImpl implements LruCache {
 
+	private static int DEFAULT_CACHE_SIZE = 10;
+	
 	private Map<Object, Object> cache = new HashMap<>();
 	
-	public LruCacheImpl(int i) {
-		// TODO Auto-generated constructor stub
+	private int maxSize;
+	
+	public LruCacheImpl(int maxSize) {
+		this.maxSize = maxSize;
 	}
 
 	public LruCacheImpl() {
-		this(1);
+		this(DEFAULT_CACHE_SIZE);
 	}
 
 	@Override
@@ -27,8 +31,7 @@ public class LruCacheImpl implements LruCache {
 
 	@Override
 	public int getMaxSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		return maxSize;
 	}
 
 }
